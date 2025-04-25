@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>localStorage Demo</title>
+</head>
+<body>
+  <h1>localStorage Example</h1>
+  <button onclick="loadAndSave()">Load from Server and Save</button>
+  <button onclick="showData()">Show Saved Data</button>
+
+  <script>
+    function loadAndSave() {
+      fetch('/api/data')
+        .then(res => res.json())
+        .then(data => {
+          localStorage.setItem('userData', JSON.stringify(data));
+          alert('Data saved to localStorage!');
+        });
+    }
+
+    function showData() {
+      const saved = localStorage.getItem('userData');
+      if (saved) {
+        const data = JSON.parse(saved);
+        alert(`User: ${data.name}, Age: ${data.age}`);
+      } else {
+        alert('No data in localStorage.');
+      }
+    }
+  </script>
+</body>
+</html>

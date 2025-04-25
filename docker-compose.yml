@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  samot:
+    build: .
+    ports:
+      - "3005:3005"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=development
